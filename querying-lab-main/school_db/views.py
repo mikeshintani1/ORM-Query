@@ -9,16 +9,16 @@ from .const_data import view_information
 
 
 # Find all students and print their first_name, last_name, and GPA to the terminal
-# Example solution:
+# # Example solution:
 def example_solution(request):
 
-    students = Student.objects.all()
+  students = Student.objects.all()
 
-    for student in students:
+  for student in students:
         print(f'First Name: {student.first_name} Last Name: {student.last_name} GPA: {student.gpa}')
 
 
-    return complete(request)
+  return complete(request)
 
 
 # Supporting Query Method Documentation:
@@ -59,9 +59,13 @@ SELECT `school_db_student`.`id`,
 # Print out each student's full name and gpa to the terminal
 def problem_one(request):
 
+  students = Student.objects.filter(gpa__gte= 3.0).order_by('-gpa')
+ 
 
+  for student in students:
+    print(f'Hello World {student.first_name} Last Name: {student.last_name} GPA: {student.gpa}')
 
-    return complete(request)
+  return complete(request)
 
 
 # Supporting Query Method Documentation:
@@ -100,9 +104,11 @@ SELECT `school_db_student`.`id`,
 # Print out the instructor's full name and hire date to the terminal
 def problem_two(request):
 
+  instructors = Instructor.objects.filter(hire_date__lte=2010).order_by('hire_date')
 
-
-    return complete(request)
+  for instructors in Instructor:
+     print(f'Hello {instructors.first_name} Last Name: {instructors.last_name} hire date: {instructors.hire_date}')
+  return complete(request)
 
 
 # Supporting Query Method Documentation:
