@@ -104,10 +104,10 @@ SELECT `school_db_student`.`id`,
 # Print out the instructor's full name and hire date to the terminal
 def problem_two(request):
 
-  instructors = Instructor.objects.filter(hire_date__lte=2010).order_by('hire_date')
+  instructors = Instructor.objects.filter(hire_date__lte = '2010-01-01').order_by('hire_date')
 
-  for instructors in Instructor:
-     print(f'Hello {instructors.first_name} Last Name: {instructors.last_name} hire date: {instructors.hire_date}')
+  for instructorss in instructors:
+     print(f'Hello {instructorss.first_name} Last Name: {instructorss.last_name} hire date: {instructorss.hire_date}')
   return complete(request)
 
 
@@ -146,8 +146,14 @@ SELECT `school_db_instructor`.`id`,
 # (Do not hard code his name in the print)
 def problem_three(request):
 
+  course = Course.objects.filter(instructor_id=2)
+  instructor = Instructor.objects.filter(id=2)
 
-
+  for cour in course:
+    print(f'Course name {cour.name} Courses {cour.id}') 
+    
+  for instr in instructor:
+    print(f'instructor name: {instr.first_name} {instr.last_name}')
     return complete(request)
 
 
@@ -194,9 +200,15 @@ SELECT `school_db_instructor`.`id`,
 # Get the count of students, courses, and instructors and print them in the terminal
 def problem_four(request):
 
+  stud_cnt = Student.objects.filter(id__gt = 0).count()
+  cor_cnt = Course.objects.filter(id__gt=0).count()
+  inst_cnt = Instructor.objects.filter(id__gt=0).count()
 
 
-    return complete(request)
+  
+  print(f'Student Count: {stud_cnt}, Course Count: {cor_cnt}, Instructor Count: {inst_cnt}')
+
+  return complete(request)
 
 
 # Supporting Query Method Documentation:
