@@ -259,7 +259,8 @@ def problem_five(request):
   new_stud = Student.objects.create(first_name ='Kylee',last_name =  'Hardwood',year= '2022',gpa= '3.0')
   
   for stud in new_stud:
-    print(f'ID: {stud.id} Full Name: {stud.first_name} {stud.last_name} GPA: {stud.gpa} ')
+    print(f' ID: {stud.id} Full Name: {stud.first_name} {stud.last_name} GPA: {stud.gpa} ')
+  
   return complete(request)
 
 
@@ -294,7 +295,11 @@ def problem_six(request):
     
     # Make sure to set this equal to the primary key of the row you just created!
     student_id = 11
+    gpa_up = Student.objects.get(pk=11)
+    gpa_up = Student.objects.filter(id = 11).update(gpa = 3.5)
 
+    for kyle in gpa_up:
+      print(f'Student ID: {kyle.id}, Student Name: {kyle.first_name}, {kyle.last_name} GPA: {kyle.gpa}.')
 
 
     return complete(request)
@@ -344,6 +349,8 @@ def problem_seven(request):
     # Make sure to set this equal to the primary key of the row you just created!
     student_id = 11
 
+    d = Student.objects.get(pk=11)
+    Student.objects.filter(id=11).delete()
 
     try:
         student = Student.objects.get(pk=student_id)
