@@ -148,13 +148,17 @@ def problem_three(request):
 
   course = Course.objects.filter(instructor_id=2)
   instructor = Instructor.objects.filter(id=2)
-
+  
   for cour in course:
-    print(f'Course name {cour.name} Courses {cour.id}') 
-    
+    print(f'Course name {cour.name}')
+
   for instr in instructor:
     print(f'instructor name: {instr.first_name} {instr.last_name}')
+    
+
+ 
     return complete(request)
+ 
 
 
 # Supporting Query Method Documentation:
@@ -252,9 +256,11 @@ SELECT COUNT(*) AS `__count`
 # NOTE every time you execute this function a duplicate student will be created with a different primary key number
 def problem_five(request):
 
-
-
-    return complete(request)
+  new_stud = Student.objects.create(first_name ='Kylee',last_name =  'Hardwood',year= '2022',gpa= '3.0')
+  
+  for stud in new_stud:
+    print(f'ID: {stud.id} Full Name: {stud.first_name} {stud.last_name} GPA: {stud.gpa} ')
+  return complete(request)
 
 
 # Supporting Query Method Documentation:
